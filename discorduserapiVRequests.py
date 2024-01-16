@@ -1,4 +1,4 @@
-import json
+
 import requests
 import random
 import pygame
@@ -100,20 +100,22 @@ class DiscordUserAPI:
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
 
-    def get_friends_online(self, legacy_name: bool = False, raw: bool = False):
-        url = f"https://discord.com/api/v9/users/{self.id}/profile?with_mutual_friends_count=true"
+    def get_profile(self, user_id: str, common_friends: bool = False, common_guilds: bool = False):
+        url = f"https://discord.com/api/v9/users/{user_id}/profile"
+
+        if common_guilds:
+            url += "?with_mutual_guilds=true"
+            if common_friends:
+                url += "&with_mutual_friends_count=true"
+        elif common_friends:
+            url += "?with_mutual_friends_count=true"
         
         response = requests.get(
             url,
             headers=self.headers_friends
         )
-
-        if raw:
-            return response.json()
-        elif legacy_name:
-            return response.json()["legacy_username"]
-        else:
-            return response.json()["user"]["username"]
+        
+        return response.json()
 
     
     def get_messages(self, channel_id: str, limit: str = "50", reverse_sort: bool = False):
