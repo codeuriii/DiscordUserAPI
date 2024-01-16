@@ -120,3 +120,4 @@ class DiscordUserAPI:
     
     def get_messages(self, channel_id: str, limit: str = "50", reverse_sort: bool = False):
         url = f"https://discord.com/api/v9/channels/{channel_id}/messages?limit=50"
+        
