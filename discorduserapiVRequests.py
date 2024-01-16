@@ -6,9 +6,8 @@ from io import BytesIO
 
 class DiscordUserAPI:
 
-    def __init__(self, id, ouath) -> None:
+    def __init__(self, ouath) -> None:
         self.ouath = ouath
-        self.id = id
         self.headers_send_mdg = {
             "accept": "*/*",
             "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
@@ -119,5 +118,5 @@ class DiscordUserAPI:
 
     
     def get_messages(self, channel_id: str, limit: str = "50", reverse_sort: bool = False):
-        url = f"https://discord.com/api/v9/channels/{channel_id}/messages?limit=50"
+        url = f"https://discord.com/api/v9/channels/{channel_id}/messages?limit={limit}"
         
