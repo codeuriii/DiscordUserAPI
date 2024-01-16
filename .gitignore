@@ -1,3 +1,4 @@
 test.*
+retest.*
 __pycache__
 tokens.py
