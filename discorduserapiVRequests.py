@@ -81,7 +81,7 @@ class DiscordUserAPI:
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
 
-    def get_friends_online(self, raw: bool = False):
+    def get_friends_online(self, legacy_name: bool = False, raw: bool = False):
         url = "https://discord.com/api/v9/users/839429032343765002/profile?with_mutual_friends_count=true"
         
         response = requests.get(
@@ -91,6 +91,8 @@ class DiscordUserAPI:
 
         if raw:
             return response.json()
+        elif legacy_name:
+            return response.json()["legacy_username"]
         else:
             return response.json()["user"]["username"]
 
