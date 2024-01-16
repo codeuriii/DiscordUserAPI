@@ -6,7 +6,7 @@ If you have a y idea’s or suggestion oreven probleme, you can always check the
 ---
 # Selenium version:
 
-### initialiation and example:
+### Initialiation and example:
 ```py
 from discorduserapiVSelenium import DiscordUserApi
 
