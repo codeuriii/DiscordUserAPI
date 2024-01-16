@@ -100,7 +100,7 @@ class DiscordUserAPI:
             pygame.time.Clock().tick(10)
 
     def get_friends_online(self, legacy_name: bool = False, raw: bool = False):
-        url = "https://discord.com/api/v9/users/839429032343765002/profile?with_mutual_friends_count=true"
+        url = "https://discord.com/api/v9/users//profile?with_mutual_friends_count=true"
         
         response = requests.get(
             url,
@@ -116,4 +116,4 @@ class DiscordUserAPI:
 
     
     def get_messages(self, channel_id: str, limit: str = "50", reverse_sort: bool = False):
-        pass
+        url = "https://discord.com/api/v9/channels/{}/messages?limit=50"
