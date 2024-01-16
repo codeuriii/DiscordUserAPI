@@ -1,7 +1,7 @@
 # DiscordUserAPI
 
 DiscordUserApi si a program that allow you to send Discord message automatically without using a Discord bot account, but you’r own Discord account.
-If you havé a y idea’s or suggestion oreven probleme, you can always check the [issues](https://github.com/codeuriii/DiscordUserAPI/issues) pages.
+If you have a y idea’s or suggestion oreven probleme, you can always check the [issues](https://github.com/codeuriii/DiscordUserAPI/issues) pages.
 
 ---
 # Selenium version:
