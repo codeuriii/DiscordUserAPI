@@ -117,6 +117,23 @@ class DiscordUserAPI:
         return response.json()
 
     
-    def get_messages(self, channel_id: str, limit: str = "50", reverse_sort: bool = False):
+    def get_messages(self, channel_id: str, limit: str = "50"):
         url = f"https://discord.com/api/v9/channels/{channel_id}/messages?limit={limit}"
         
+        response = requests.get(
+            url,
+            headers=self.headers_messages
+        )
+
+        return response.json()
+
+    def get_content_in_single_msg(self, msg: dict):
+        return msg["content"]
+    
+    def get_content_in_multiple_msg(self, msgs: list[dict]):
+        l = []
+
+        for msg in msgs:
+            l.append(self.get_content_in_single_msg(msg))
+
+        return l
