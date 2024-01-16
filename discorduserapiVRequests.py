@@ -81,7 +81,7 @@ class DiscordUserAPI:
             json=body
         )
 
-        return response.text
+        return response.status_code
     
     def get_link_ping(self):
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
