@@ -209,8 +209,16 @@ class DiscordUserAPI:
         with open(current_name, "wb") as f:
             f.write(response.content)
 
-    def get_content_in_single_msg(self, msg: dict):
-        return msg["content"]
+    def get_content_in_single_msg(self, msg):
+        if type(msg) == list and len(msg) == 1:
+            print("WARNING - msg is a list, not a dict")
+            return msg[0]["content"]
+        elif type(msg) == dict:
+            return msg["content"]
+        else:
+            raise TypeError(
+                "Var msg is not a list or a dict\nCannot get content"
+            )
     
     def get_content_in_multiple_msg(self, msgs: list[dict]):
         l = []
