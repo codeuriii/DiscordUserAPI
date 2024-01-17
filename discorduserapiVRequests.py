@@ -217,7 +217,7 @@ class DiscordUserAPI:
             return msg["content"]
         else:
             raise TypeError(
-                "Var msg is not a list or a dict\nCannot get content"
+                "Cannot get content: msg is not a dict"
             )
     
     def get_content_in_multiple_msg(self, msgs: list[dict]):
