@@ -197,6 +197,18 @@ class DiscordUserAPI:
 
         return response.json()
 
+    def get_avatar(self, profile: dict, size: str = "128"):
+        current_id = profile["user"]["id"]
+        current_avatar = profile['user']['avatar']
+        current_name = profile["user"]["global_name"] + ".png"
+
+        url = f"https://cdn.discordapp.com/avatars/{current_id}/{current_avatar}.webp?size={size}"
+
+        response = requests.get(url)
+
+        with open(current_name, "wb") as f:
+            f.write(response.content)
+
     def get_content_in_single_msg(self, msg: dict):
         return msg["content"]
     
