@@ -237,7 +237,7 @@ class DiscordUserAPI:
             "Accept": "*/*",
             "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
             "X-Context-Properties": "eyJsb2NhdGlvbiI6IkZyaWVuZHMifQ==",
-            "Authorization": "OTczNTQ1MTEwMjQ1NjI1ODY3.GIEntK.9Cg6P8CmswopPwrMdZ1WE28nqtfu6oinW0RbEQ",
+            "Authorization": self.ouath,
             "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
             "X-Discord-Locale": "fr",
             "X-Discord-Timezone": "Indian/Reunion",
