@@ -258,3 +258,27 @@ class DiscordUserAPI:
         )
 
         return response.status_code
+    
+    def add_friend(self, friend_name: str, discriminator: str = None):
+        url = "https://discord.com/api/v9/users/@me/relationships"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Accept": "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "Content-Type": "application/json",
+            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkFkZCBGcmllbmQifQ==",
+            "Authorization": self.ouath,
+            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Discord-Locale": "fr",
+            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Debug-Options": "bugReporterEnabled",
+            "Alt-Used": "discord.com",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin"
+        }
+        data = {"username": friend_name, "discriminator": discriminator}
+
+        response = requests.post(url, headers=headers, json=data)
+
+        return response.status_code
