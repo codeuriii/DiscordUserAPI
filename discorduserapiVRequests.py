@@ -277,7 +277,10 @@ class DiscordUserAPI:
             "Sec-Fetch-Mode": "cors",
             "Sec-Fetch-Site": "same-origin"
         }
-        data = {"username": friend_name, "discriminator": discriminator}
+        data = {
+            "username": friend_name,
+            "discriminator": discriminator
+        }
 
         response = requests.post(url, headers=headers, json=data)
 
