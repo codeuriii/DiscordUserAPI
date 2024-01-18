@@ -342,7 +342,7 @@ class DiscordUserAPI:
         headers = {
             "accept": "*/*",
             "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "authorization": "OTczNTQ1MTEwMjQ1NjI1ODY3.GOKbJ-.YZmX8sRn6jHk1NaTH8cvngYtqfko4mkeYYyR7A",
+            "authorization": self.ouath,
             "cache-control": "no-cache",
             "pragma": "no-cache",
             "prefer": "safe",
