@@ -285,3 +285,6 @@ class DiscordUserAPI:
         response = requests.post(url, headers=headers, json=data)
 
         return response.status_code
+
+    def is_friend(self, user_id: str) -> bool:
+        pass
