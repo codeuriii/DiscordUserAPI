@@ -313,6 +313,26 @@ class DiscordUserAPI:
             f.append(friend["user"]["global_name"])
 
         return f
+    
+    def get_friends_ids(self) -> list[str]:
+        friends = self.get_friends()
+        f = []
 
-    def is_friend(self, user_id: str) -> bool:
-        pass
+        for friend in friends:
+            f.append(friend["id"])
+
+        return f
+
+    def is_friend_by_name(self, username: str) -> bool:
+        friends_names = self.get_friends_names()
+
+        if username.lower() in map(str.lower, friends_names):
+            return True
+        return False
+    
+    def is_friend_by_id(self, id: str) -> bool:
+        friends_ids = self.get_friends_ids()
+
+        if id in friends_ids:
+            return True
+        return False
