@@ -4,6 +4,7 @@ import random
 import pygame
 from io import BytesIO
 
+
 class DiscordUserAPI:
 
     def __init__(self, mail: str, password: str) -> None:
