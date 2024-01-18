@@ -170,15 +170,9 @@ class DiscordUserAPI:
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
 
-    def get_profile(self, user_id: str, common_friends: bool = False, common_guilds: bool = False) -> dict:
+    def get_profile(self, user_id: str) -> dict:
         url = f"https://discord.com/api/v9/users/{user_id}/profile"
 
-        if common_guilds:
-            url += "?with_mutual_guilds=true"
-            if common_friends:
-                url += "&with_mutual_friends_count=true"
-        elif common_friends:
-            url += "?with_mutual_friends_count=true"
         
         response = requests.get(
             url,
