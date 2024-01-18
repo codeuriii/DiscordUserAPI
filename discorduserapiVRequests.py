@@ -30,7 +30,7 @@ class DiscordUserAPI:
             "x-discord-timezone": "Indian/Reunion",
             "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
         }
-        self.headers_friends = {
+        self.headers_profile = {
             "accept": "*/*",
             "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
             "authorization": self.ouath,
@@ -182,7 +182,7 @@ class DiscordUserAPI:
         
         response = requests.get(
             url,
-            headers=self.headers_friends
+            headers=self.headers_profile
         )
         
         return response.json()
@@ -228,3 +228,33 @@ class DiscordUserAPI:
             l.append(self.get_content_in_single_msg(msg))
 
         return l
+    
+    def delete_friend(self, friend_id: str):
+        url = f"https://discord.com/api/v9/users/@me/relationships/{friend_id}"
+
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Accept": "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkZyaWVuZHMifQ==",
+            "Authorization": "OTczNTQ1MTEwMjQ1NjI1ODY3.GIEntK.9Cg6P8CmswopPwrMdZ1WE28nqtfu6oinW0RbEQ",
+            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Discord-Locale": "fr",
+            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Debug-Options": "bugReporterEnabled",
+            "Alt-Used": "discord.com",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin"
+        }
+
+        referrer = "https://discord.com/channels/@me"
+        params = {"referrer": referrer, "mode": "cors"}
+        
+
+        response = requests.delete(url,
+            headers=headers,
+            params=params
+        )
+
+        return response.status_code
