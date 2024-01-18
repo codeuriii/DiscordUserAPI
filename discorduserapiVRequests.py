@@ -67,7 +67,7 @@ class DiscordUserAPI:
             "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
         }
 
-    def get_token(self):
+    def get_token(self) -> str:
         url = "https://discord.com/api/v9/auth/login"
         headers = {
             "accept": "*/*",
@@ -101,7 +101,7 @@ class DiscordUserAPI:
 
         return response.json()["token"]
     
-    def get_id(self):
+    def get_id(self) -> str:
         url = "https://discord.com/api/v9/auth/login"
         headers = {
             "accept": "*/*",
@@ -135,7 +135,7 @@ class DiscordUserAPI:
 
         return response.json()["user_id"]
     
-    def send_msg(self, id_recv: str, msg_to_send: str):
+    def send_msg(self, id_recv: str, msg_to_send: str) -> int:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
 
         body = {
@@ -154,13 +154,13 @@ class DiscordUserAPI:
 
         return response.status_code
     
-    def get_link_ping(self):
+    def get_link_ping(self) -> str:
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
     
-    def get_link_discord_video_loading(self):
+    def get_link_discord_video_loading(self) -> str:
         return 'https://discord.com/assets/b85e9e5e26daee13304b.webm'
     
-    def play_ping_sound(self):
+    def play_ping_sound(self) -> None:
         pygame.init()
         response = requests.get(self.get_link_ping())
         ping_mp3_data = BytesIO(response.content)
@@ -170,7 +170,7 @@ class DiscordUserAPI:
         while pygame.mixer.music.get_busy():
             pygame.time.Clock().tick(10)
 
-    def get_profile(self, user_id: str, common_friends: bool = False, common_guilds: bool = False):
+    def get_profile(self, user_id: str, common_friends: bool = False, common_guilds: bool = False) -> dict:
         url = f"https://discord.com/api/v9/users/{user_id}/profile"
 
         if common_guilds:
@@ -188,7 +188,7 @@ class DiscordUserAPI:
         return response.json()
 
     
-    def get_messages(self, channel_id: str, limit: str = "50"):
+    def get_messages(self, channel_id: str, limit: str = "50") -> list[dict]:
         url = f"https://discord.com/api/v9/channels/{channel_id}/messages?limit={limit}"
         
         response = requests.get(
@@ -198,7 +198,7 @@ class DiscordUserAPI:
 
         return response.json()
 
-    def get_avatar(self, profile: dict, size: str = "128"):
+    def get_avatar(self, profile: dict, size: str = "128") -> None:
         current_id = profile["user"]["id"]
         current_avatar = profile['user']['avatar']
         current_name = profile["user"]["global_name"] + ".png"
@@ -210,7 +210,7 @@ class DiscordUserAPI:
         with open(current_name, "wb") as f:
             f.write(response.content)
 
-    def get_content_in_single_msg(self, msg):
+    def get_content_in_single_msg(self, msg) -> str:
         if type(msg) == list and len(msg) == 1:
             print("WARNING - msg is a list, not a dict")
             return msg[0]["content"]
@@ -221,7 +221,7 @@ class DiscordUserAPI:
                 "Cannot get content: msg is not a dict"
             )
     
-    def get_content_in_multiple_msg(self, msgs: list[dict]):
+    def get_content_in_multiple_msg(self, msgs: list[dict]) -> list[str]:
         l = []
 
         for msg in msgs:
@@ -229,7 +229,7 @@ class DiscordUserAPI:
 
         return l
     
-    def delete_friend(self, friend_id: str):
+    def delete_friend(self, friend_id: str) -> int:
         url = f"https://discord.com/api/v9/users/@me/relationships/{friend_id}"
 
         headers = {
@@ -259,7 +259,7 @@ class DiscordUserAPI:
 
         return response.status_code
     
-    def add_friend(self, friend_name: str, discriminator: str = None):
+    def add_friend(self, friend_name: str, discriminator: str = None) -> int:
         url = "https://discord.com/api/v9/users/@me/relationships"
         headers = {
             "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
