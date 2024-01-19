@@ -106,7 +106,7 @@ class DiscordUserAPI:
             return response.json()
         except:
             raise ConnectionResetError(
-                "Le service de ressources est soumis à une limitation de débit."
+                "Le service de ressources est soumis à une limitation de débit.\nVeuillez réessayer dans 5 secondes."
             )
     
     def get_id(self) -> str:
@@ -375,3 +375,50 @@ class DiscordUserAPI:
             payload = "{\"settings\":\"x280\"}".replace("x280", all_status[status])
             response = requests.patch(url, headers=headers, data=payload)
             return response.status_code
+        
+
+    def block_user(self, user_id: str) -> int:
+
+        url = f"https://discord.com/api/v9/users/@me/relationships/{user_id}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Accept": "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "Content-Type": "application/json",
+            "X-Context-Properties": "eyJsb2NhdGlvbiI6IlVzZXIgUHJvZmlsZSJ9",
+            "Authorization": self.ouath,
+            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NzgxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Discord-Locale": "fr",
+            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Debug-Options": "bugReporterEnabled",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin"
+        }
+        payload = {
+            "type": 2
+        }
+
+        response = requests.put(url, headers=headers, json=payload)
+
+        return response.status_code
+    
+    def unblock_user(self, user_id: str) -> int:
+        url = f"https://discord.com/api/v9/users/@me/relationships/{user_id}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
+            "Accept": "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkZyaWVuZHMifQ==",
+            "Authorization": self.ouath,
+            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NzgxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Discord-Locale": "fr",
+            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Debug-Options": "bugReporterEnabled",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin"
+        }
+
+        response = requests.delete(url, headers=headers)
+        return response.status_code
