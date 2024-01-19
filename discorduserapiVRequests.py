@@ -103,7 +103,7 @@ class DiscordUserAPI:
         return response.json()
     
     def get_id(self) -> str:
-        return self.login()["id"]
+        return self.login()["user_id"]
     
     def send_msg(self, id_recv: str, msg_to_send: str) -> int:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
