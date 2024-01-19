@@ -11,7 +11,8 @@ class DiscordUserAPI:
     def __init__(self, mail: str, password: str) -> None:
         self.mail = mail
         self.password = password
-        self.ouath = self.login()["token"]
+        self.login_infos = self.login()
+        self.ouath = self.login_infos["token"]
         self.headers_send_mdg = {
             "accept": "*/*",
             "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
@@ -101,16 +102,15 @@ class DiscordUserAPI:
             json=body
         )
         try:
-            if str(response.json()["code"]) == "40062":
-                print("Le service de ressources est soumis à une limitation de débit.")
-                exit(0)
-        except:
+            response.json()["token"]
             return response.json()
+        except:
+            raise ConnectionResetError(
+                "Le service de ressources est soumis à une limitation de débit."
+            )
     
     def get_id(self) -> str:
-        teemp = self.login()
-        print(teemp)
-        return teemp["user_id"]
+        return self.login_infos["user_id"]
     
     def send_msg(self, id_recv: str, msg_to_send: str) -> int:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
