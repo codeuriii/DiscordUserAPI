@@ -67,6 +67,7 @@ class DiscordUserAPI:
             "x-discord-timezone": "Indian/Reunion",
             "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
         }
+        self.username = self.get_profile(self.get_id())["user"]["username"]
 
     def login(self) -> dict:
         url = "https://discord.com/api/v9/auth/login"
@@ -165,7 +166,7 @@ class DiscordUserAPI:
     def get_avatar(self, profile: dict, size: str = "128") -> None:
         current_id = profile["user"]["id"]
         current_avatar = profile['user']['avatar']
-        current_name = profile["user"]["global_name"] + ".png"
+        current_name = profile["user"]["username"] + ".png"
 
         url = f"https://cdn.discordapp.com/avatars/{current_id}/{current_avatar}.webp?size={size}"
 
@@ -280,7 +281,7 @@ class DiscordUserAPI:
         f = []
 
         for friend in friends:
-            f.append(friend["user"]["global_name"])
+            f.append(friend["user"]["username"])
 
         return f
     
