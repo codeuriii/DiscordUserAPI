@@ -100,11 +100,17 @@ class DiscordUserAPI:
             headers=headers,
             json=body
         )
-
-        return response.json()
+        try:
+            if str(response.json()["code"]) == "40062":
+                print("Le service de ressources est soumis à une limitation de débit.")
+                exit(0)
+        except:
+            return response.json()
     
     def get_id(self) -> str:
-        return self.login()["user_id"]
+        teemp = self.login()
+        print(teemp)
+        return teemp["user_id"]
     
     def send_msg(self, id_recv: str, msg_to_send: str) -> int:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
