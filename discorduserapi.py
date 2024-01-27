@@ -4,7 +4,8 @@ import random
 import pygame
 from io import BytesIO
 import json
-
+import time
+import threading
 
 class DiscordUserAPI:
 
@@ -13,6 +14,8 @@ class DiscordUserAPI:
         self.password = password
         self.login_infos = self.login()
         self.ouath = self.login_infos["token"]
+        self.message_listeners = []  # Liste des fonctions de rappel des messages
+        self.is_listening = False
         self.headers_send_mdg = {
             "accept": "*/*",
             "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
@@ -69,6 +72,7 @@ class DiscordUserAPI:
             "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
         }
         self.username = self.get_profile(self.get_id())["user"]["username"]
+        print("login successfuly")
 
     def login(self) -> dict:
         url = "https://discord.com/api/v9/auth/login"
@@ -422,3 +426,29 @@ class DiscordUserAPI:
 
         response = requests.delete(url, headers=headers)
         return response.status_code
+
+    def add_message_listener(self, listener_func):
+        self.message_listeners.append(listener_func)
+
+    def start_listening(self, channel_id: str):
+        if not self.is_listening:
+            self.is_listening = True
+            # Lancer un thread pour écouter en arrière-plan
+            self.xblorg = channel_id
+            listener_thread = threading.Thread(target=self._listen_for_messages)
+            listener_thread.daemon = True
+            listener_thread.start()
+
+    def _listen_for_messages(self):
+        svgd = self.get_messages(self.xblorg, "1")
+        # Simulation de la réception de nouveaux messages toutes les 3 secondes
+        while self.is_listening:
+            latest_message = self.get_messages(self.xblorg, "1")
+            if svgd != latest_message:
+                svgd = latest_message
+                self._notify_message_listeners(latest_message)
+            time.sleep(1)  # Attendez 3 secondes avant de vérifier à nouveau
+
+    def _notify_message_listeners(self, message):
+        for listener_func in self.message_listeners:
+            listener_func(message)
