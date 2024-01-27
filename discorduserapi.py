@@ -14,7 +14,7 @@ class DiscordUserAPI:
         self.password = password
         self.login_infos = self.login()
         self.ouath = self.login_infos["token"]
-        self.message_listeners = []  # Liste des fonctions de rappel des messages
+        self.message_listeners = []
         self.is_listening = False
         self.headers_send_mdg = {
             "accept": "*/*",
