@@ -433,7 +433,6 @@ class DiscordUserAPI:
     def start_listening(self, channel_id: str):
         if not self.is_listening:
             self.is_listening = True
-            # Lancer un thread pour écouter en arrière-plan
             self.xblorg = channel_id
             listener_thread = threading.Thread(target=self._listen_for_messages)
             listener_thread.daemon = True
@@ -441,13 +440,12 @@ class DiscordUserAPI:
 
     def _listen_for_messages(self):
         svgd = self.get_messages(self.xblorg, "1")
-        # Simulation de la réception de nouveaux messages toutes les 3 secondes
         while self.is_listening:
             latest_message = self.get_messages(self.xblorg, "1")
             if svgd != latest_message:
                 svgd = latest_message
                 self._notify_message_listeners(latest_message)
-            time.sleep(1)  # Attendez 3 secondes avant de vérifier à nouveau
+            time.sleep(1)
 
     def _notify_message_listeners(self, message):
         for listener_func in self.message_listeners:
