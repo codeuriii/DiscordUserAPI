@@ -15,3 +15,5 @@ DUA.add_message_listener(mafonction)
 ```py
 DUA.start_listener("l'identifiant du salon duquel vous voulez surveiller les messages")
 ```
+
+Le listener ne s'arrêtera jamais, sauf si vous arrêtez le script
