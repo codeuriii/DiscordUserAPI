@@ -1,5 +1,4 @@
-test.*
-retest.*
+*test*
 __pycache__
 tokens.py
 *.png
