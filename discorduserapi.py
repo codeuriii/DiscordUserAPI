@@ -32,8 +32,8 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Indian/Reunion",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+            "x-discord-timezone": "please set your geolocalization",
+            "x-super-properties": "please set your super properties"
         }
         self.headers_profile = {
             "accept": "*/*",
@@ -50,8 +50,8 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Indian/Reunion",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+            "x-discord-timezone": "please set your geolocalization",
+            "x-super-properties": "please set your super properties"
         }
         self.headers_messages = {
             "accept": "*/*",
@@ -68,8 +68,8 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Indian/Reunion",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+            "x-discord-timezone": "please set your geolocalization",
+            "x-super-properties": "please set your super properties"
         }
         self.username = self.get_profile(self.get_id())["user"]["username"]
         print("login successfuly")
@@ -88,9 +88,9 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Asia/Dubai",
-            "x-fingerprint": "1197033163386523658.rQaK2nwJRlDG0aBEYsZ5mt1uWpc",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5MDQ4LCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsLCJkZXNpZ25faWQiOjB9"
+            "x-discord-timezone": "please set your geolocalization",
+            "x-fingerprint": "please set your finger print",
+            "x-super-properties": "please set your super properties"
         }
         body = {
             "login": self.mail,
@@ -211,11 +211,11 @@ class DiscordUserAPI:
             "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
             "Accept": "*/*",
             "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkZyaWVuZHMifQ==",
+            "X-Context-Properties": "please set your context properties",
             "Authorization": self.ouath,
-            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Super-Properties": "please set your super properties",
             "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Discord-Timezone": "please set your geolocalization",
             "X-Debug-Options": "bugReporterEnabled",
             "Alt-Used": "discord.com",
             "Sec-Fetch-Dest": "empty",
@@ -241,11 +241,11 @@ class DiscordUserAPI:
             "Accept": "*/*",
             "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
             "Content-Type": "application/json",
-            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkFkZCBGcmllbmQifQ==",
+            "X-Context-Properties": "please set your context properties",
             "Authorization": self.ouath,
-            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Super-Properties": "please set your super properties",
             "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Discord-Timezone": "please set your geolocalization",
             "X-Debug-Options": "bugReporterEnabled",
             "Alt-Used": "discord.com",
             "Sec-Fetch-Dest": "empty",
@@ -278,8 +278,8 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Indian/Reunion",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiaHR0cHM6Ly9kaXNjb3JkLmNvbS9sb2dpbiIsInJlZmVycmluZ19kb21haW5fY3VycmVudCI6ImRpc2NvcmQuY29tIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+            "x-discord-timezone": "please set your geolocalization",
+            "x-super-properties": "please set your super properties"
         }
 
         response = requests.get(url, headers=headers)
@@ -335,8 +335,8 @@ class DiscordUserAPI:
             "sec-fetch-site": "same-origin",
             "x-debug-options": "bugReporterEnabled",
             "x-discord-locale": "fr",
-            "x-discord-timezone": "Indian/Reunion",
-            "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+            "x-discord-timezone": "please set your geolocalization",
+            "x-super-properties": "please set your super properties"
         }
 
         response = requests.get(url, headers=headers)
@@ -373,8 +373,8 @@ class DiscordUserAPI:
                 "sec-fetch-site": "same-origin",
                 "x-debug-options": "bugReporterEnabled",
                 "x-discord-locale": "fr",
-                "x-discord-timezone": "Indian/Reunion",
-                "x-super-properties": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiQ2hyb21lIiwiZGV2aWNlIjoiIiwic3lzdGVtX2xvY2FsZSI6ImZyIiwiYnJvd3Nlcl91c2VyX2FnZW50IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEyMC4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xMjAuMC4wLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjAuMC4wLjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6Imh0dHBzOi8vcGFsYWRpdW0tcHZwLmZyLyIsInJlZmVycmluZ19kb21haW4iOiJwYWxhZGl1bS1wdnAuZnIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NTAxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ=="
+                "x-discord-timezone": "please set your geolocalization",
+                "x-super-properties": "please set your super properties"
             }
             payload = "{\"settings\":\"x280\"}".replace("x280", all_status[status])
             response = requests.patch(url, headers=headers, data=payload)
@@ -389,11 +389,11 @@ class DiscordUserAPI:
             "Accept": "*/*",
             "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
             "Content-Type": "application/json",
-            "X-Context-Properties": "eyJsb2NhdGlvbiI6IlVzZXIgUHJvZmlsZSJ9",
+            "X-Context-Properties": "please set your context properties",
             "Authorization": self.ouath,
-            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NzgxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Super-Properties": "please set your super properties",
             "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Discord-Timezone": "please set your geolocalization",
             "X-Debug-Options": "bugReporterEnabled",
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
@@ -413,11 +413,11 @@ class DiscordUserAPI:
             "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
             "Accept": "*/*",
             "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "X-Context-Properties": "eyJsb2NhdGlvbiI6IkZyaWVuZHMifQ==",
+            "X-Context-Properties": "please set your context properties",
             "Authorization": self.ouath,
-            "X-Super-Properties": "eyJvcyI6IkxpbnV4IiwiYnJvd3NlciI6IkZpcmVmb3giLCJkZXZpY2UiOiIiLCJzeXN0ZW1fbG9jYWxlIjoiZnIiLCJicm93c2VyX3VzZXJfYWdlbnQiOiJNb3ppbGxhLzUuMCAoWDExOyBVYnVudHU7IExpbnV4IHg4Nl82NDsgcnY6MTIxLjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvMTIxLjAiLCJicm93c2VyX3ZlcnNpb24iOiIxMjEuMCIsIm9zX3ZlcnNpb24iOiIiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6MjU5NzgxLCJjbGllbnRfZXZlbnRfc291cmNlIjpudWxsfQ==",
+            "X-Super-Properties": "please set your super properties",
             "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "Indian/Reunion",
+            "X-Discord-Timezone": "please set your geolocalization",
             "X-Debug-Options": "bugReporterEnabled",
             "Sec-Fetch-Dest": "empty",
             "Sec-Fetch-Mode": "cors",
