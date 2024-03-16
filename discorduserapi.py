@@ -16,93 +16,21 @@ class DiscordUserAPI:
         self.ouath = self.login_infos["token"]
         self.message_listeners = []
         self.is_listening = False
-        self.headers_send_mdg = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        self.headers = {
             "authorization": self.ouath,
-            "cache-control": "no-cache",
-            "content-type": "application/json",
-            "pragma": "no-cache",
-            "prefer": "safe",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-super-properties": "please set your super properties"
-        }
-        self.headers_profile = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "authorization": self.ouath,
-            "cache-control": "no-cache",
-            "pragma": "no-cache",
-            "prefer": "safe",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-super-properties": "please set your super properties"
-        }
-        self.headers_messages = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "authorization": self.ouath,
-            "cache-control": "no-cache",
-            "pragma": "no-cache",
-            "prefer": "safe",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-super-properties": "please set your super properties"
         }
         self.username = self.get_profile(self.get_id())["user"]["username"]
         print("login successfuly")
 
     def login(self) -> dict:
         url = "https://discord.com/api/v9/auth/login"
-        headers = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "content-type": "application/json",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-fingerprint": "please set your finger print",
-            "x-super-properties": "please set your super properties"
-        }
         body = {
             "login": self.mail,
             "password": self.password,
-            "undelete": False,
-            "login_source": None,
-            "gift_code_sku_id": None
         }
 
         response = requests.post(
             url,
-            headers=headers,
             json=body
         )
         try:
@@ -120,16 +48,13 @@ class DiscordUserAPI:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
 
         body = {
-            "mobile_network_type": "unknown",
             "content": msg_to_send,
             "nonce": ''.join([str(random.randrange(10)) for _ in range(19)]),
-            "tts": False,
-            "flags": 0
         }
 
         response = requests.post(
             url,
-            headers=self.headers_send_mdg,
+            headers=self.headers,
             json=body
         )
 
@@ -157,7 +82,7 @@ class DiscordUserAPI:
         
         response = requests.get(
             url,
-            headers=self.headers_profile
+            headers=self.headers
         )
         
         return response.json()
@@ -168,7 +93,7 @@ class DiscordUserAPI:
         
         response = requests.get(
             url,
-            headers=self.headers_messages
+            headers=self.headers
         )
 
         return response.json()
@@ -231,33 +156,6 @@ class DiscordUserAPI:
             headers=headers,
             params=params
         )
-
-        return response.status_code
-    
-    def add_friend(self, friend_name: str, discriminator: str = None) -> int:
-        url = "https://discord.com/api/v9/users/@me/relationships"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-            "Accept": "*/*",
-            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "Content-Type": "application/json",
-            "X-Context-Properties": "please set your context properties",
-            "Authorization": self.ouath,
-            "X-Super-Properties": "please set your super properties",
-            "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "please set your geolocalization",
-            "X-Debug-Options": "bugReporterEnabled",
-            "Alt-Used": "discord.com",
-            "Sec-Fetch-Dest": "empty",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "same-origin"
-        }
-        data = {
-            "username": friend_name,
-            "discriminator": discriminator
-        }
-
-        response = requests.post(url, headers=headers, json=data)
 
         return response.status_code
     
