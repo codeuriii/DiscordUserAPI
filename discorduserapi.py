@@ -149,7 +149,6 @@ class DiscordUserAPI:
 
         for friend in friends:
             f.append(friend["user"]["username"])
-
         return f
     
     def get_friends_ids(self) -> list[str]:
@@ -158,7 +157,6 @@ class DiscordUserAPI:
 
         for friend in friends:
             f.append(friend["id"])
-
         return f
 
     def is_friend_by_name(self, username: str) -> bool:
@@ -178,7 +176,6 @@ class DiscordUserAPI:
     def get_own_infos(self) -> dict:
         url = "https://discord.com/api/v9/users/@me"
         response = requests.get(url, headers=self.headers)
-
         return response.json()
     
     def set_status(self, status: str) -> int:
@@ -208,7 +205,6 @@ class DiscordUserAPI:
         }
 
         response = requests.put(url, headers=self.headers, json=payload)
-
         return response.status_code
     
     def unblock_user(self, user_id: str) -> int:
