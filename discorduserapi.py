@@ -79,12 +79,10 @@ class DiscordUserAPI:
     def get_profile(self, user_id: str) -> dict:
         url = f"https://discord.com/api/v9/users/{user_id}/profile"
 
-        
         response = requests.get(
             url,
             headers=self.headers
         )
-        
         return response.json()
 
     
