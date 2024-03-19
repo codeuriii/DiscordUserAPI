@@ -141,7 +141,6 @@ class DiscordUserAPI:
     def get_friends(self) -> list[dict]:
         url = "https://discord.com/api/v9/users/@me/relationships"
         response = requests.get(url, headers=self.headers)
-
         return response.json()
     
     def get_friends_names(self) -> list[str]:
