@@ -38,7 +38,7 @@ class DiscordUserAPI:
             return response.json()
         except:
             raise ConnectionResetError(
-                "Le service de ressources est soumis à une limitation de débit.\nVeuillez réessayer dans 5 secondes."
+                "La requète renvoie un captcha.\nVeuillez arrêter de spammer le /v9/auth/login."
             )
     
     def get_id(self) -> str:
