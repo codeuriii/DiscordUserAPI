@@ -98,17 +98,15 @@ class DiscordUserAPI:
 
         return response.json()
 
-    def get_avatar(self, profile: dict, size: str = "128") -> None:
+    def get_avatar(self, profile: dict, size: str = "128") -> bytes:
         current_id = profile["user"]["id"]
         current_avatar = profile['user']['avatar']
-        current_name = profile["user"]["username"] + ".png"
 
         url = f"https://cdn.discordapp.com/avatars/{current_id}/{current_avatar}.webp?size={size}"
 
         response = requests.get(url)
 
-        with open(current_name, "wb") as f:
-            f.write(response.content)
+        return response.content
 
     def get_content_in_single_msg(self, msg) -> str:
         if type(msg) == list and len(msg) == 1:
