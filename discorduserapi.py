@@ -130,28 +130,11 @@ class DiscordUserAPI:
     def delete_friend(self, friend_id: str) -> int:
         url = f"https://discord.com/api/v9/users/@me/relationships/{friend_id}"
 
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-            "Accept": "*/*",
-            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "X-Context-Properties": "please set your context properties",
-            "Authorization": self.ouath,
-            "X-Super-Properties": "please set your super properties",
-            "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "please set your geolocalization",
-            "X-Debug-Options": "bugReporterEnabled",
-            "Alt-Used": "discord.com",
-            "Sec-Fetch-Dest": "empty",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "same-origin"
-        }
-
         referrer = "https://discord.com/channels/@me"
         params = {"referrer": referrer, "mode": "cors"}
         
-
         response = requests.delete(url,
-            headers=headers,
+            headers=self.headers,
             params=params
         )
 
@@ -159,26 +142,7 @@ class DiscordUserAPI:
     
     def get_friends(self) -> list[dict]:
         url = "https://discord.com/api/v9/users/@me/relationships"
-        headers = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "authorization": self.ouath,
-            "cache-control": "no-cache",
-            "pragma": "no-cache",
-            "prefer": "safe",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-super-properties": "please set your super properties"
-        }
-
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=self.headers)
 
         return response.json()
     
@@ -216,26 +180,7 @@ class DiscordUserAPI:
     
     def get_own_infos(self) -> dict:
         url = "https://discord.com/api/v9/users/@me"
-        headers = {
-            "accept": "*/*",
-            "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-            "authorization": self.ouath,
-            "cache-control": "no-cache",
-            "pragma": "no-cache",
-            "prefer": "safe",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "x-debug-options": "bugReporterEnabled",
-            "x-discord-locale": "fr",
-            "x-discord-timezone": "please set your geolocalization",
-            "x-super-properties": "please set your super properties"
-        }
-
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=self.headers)
 
         return response.json()
     
@@ -253,74 +198,25 @@ class DiscordUserAPI:
                 all_status = json.load(f)
 
             url = "https://discord.com/api/v9/users/@me/settings-proto/1"
-            headers = {
-                "accept": "*/*",
-                "accept-language": "fr,fr-FR;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-                "authorization": self.ouath,
-                "cache-control": "no-cache",
-                "content-type": "application/json",
-                "pragma": "no-cache",
-                "prefer": "safe",
-                "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
-                "sec-ch-ua-mobile": "?0",
-                "sec-ch-ua-platform": "\"Windows\"",
-                "sec-fetch-dest": "empty",
-                "sec-fetch-mode": "cors",
-                "sec-fetch-site": "same-origin",
-                "x-debug-options": "bugReporterEnabled",
-                "x-discord-locale": "fr",
-                "x-discord-timezone": "please set your geolocalization",
-                "x-super-properties": "please set your super properties"
-            }
             payload = "{\"settings\":\"x280\"}".replace("x280", all_status[status])
-            response = requests.patch(url, headers=headers, data=payload)
+            response = requests.patch(url, headers=self.headers, data=payload)
             return response.status_code
         
 
     def block_user(self, user_id: str) -> int:
 
         url = f"https://discord.com/api/v9/users/@me/relationships/{user_id}"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-            "Accept": "*/*",
-            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "Content-Type": "application/json",
-            "X-Context-Properties": "please set your context properties",
-            "Authorization": self.ouath,
-            "X-Super-Properties": "please set your super properties",
-            "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "please set your geolocalization",
-            "X-Debug-Options": "bugReporterEnabled",
-            "Sec-Fetch-Dest": "empty",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "same-origin"
-        }
         payload = {
             "type": 2
         }
 
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=self.headers, json=payload)
 
         return response.status_code
     
     def unblock_user(self, user_id: str) -> int:
         url = f"https://discord.com/api/v9/users/@me/relationships/{user_id}"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:121.0) Gecko/20100101 Firefox/121.0",
-            "Accept": "*/*",
-            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-            "X-Context-Properties": "please set your context properties",
-            "Authorization": self.ouath,
-            "X-Super-Properties": "please set your super properties",
-            "X-Discord-Locale": "fr",
-            "X-Discord-Timezone": "please set your geolocalization",
-            "X-Debug-Options": "bugReporterEnabled",
-            "Sec-Fetch-Dest": "empty",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Site": "same-origin"
-        }
-
-        response = requests.delete(url, headers=headers)
+        response = requests.delete(url, headers=self.headers)
         return response.status_code
 
     def add_message_listener(self, listener_func):
