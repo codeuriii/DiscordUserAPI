@@ -6,6 +6,7 @@ from io import BytesIO
 import json
 import time
 import threading
+import discord as ds
 
 class DiscordUserAPI:
 
@@ -59,6 +60,30 @@ class DiscordUserAPI:
         )
 
         return response.status_code
+    
+    def send_embed(self, id_recv: str, embed: ds.Embed):
+        print("WARNING: function is not functional")
+        return
+    
+        url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
+        
+        print(embed.to_dict())
+
+        body = {
+            "embeds": [embed.to_dict()],
+            "content": None,
+            "components": [],
+            "tts": False,
+            "nonce": ''.join([str(random.randrange(10)) for _ in range(19)]),
+        }
+
+        response = requests.post(
+            url,
+            headers=self.headers,
+            json=body
+        )
+
+        return response.text
     
     def get_link_ping(self) -> str:
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
