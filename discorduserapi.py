@@ -66,8 +66,6 @@ class DiscordUserAPI:
         return
     
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
-        
-        print(embed.to_dict())
 
         body = {
             "embeds": [embed.to_dict()],
