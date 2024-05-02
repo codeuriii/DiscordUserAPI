@@ -10,24 +10,21 @@ import discord as ds
 
 class DiscordUserAPI:
 
-    def __init__(self, mail: str, password: str) -> None:
-        self.mail = mail
-        self.password = password
-        self.login_infos = self.login()
-        self.ouath = self.login_infos["token"]
+    def __init__(self) -> None:
         self.message_listeners = []
         self.is_listening = False
+
+    def login_oauth(self, ouath: str):
+        self.ouath = ouath
         self.headers = {
             "authorization": self.ouath,
         }
-        self.username = self.get_profile(self.get_id())["user"]["username"]
-        print("login successfuly")
 
-    def login(self) -> dict:
+    def login_mail(self, mail: str, password: str) -> dict:
         url = "https://discord.com/api/v9/auth/login"
         body = {
-            "login": self.mail,
-            "password": self.password,
+            "login": mail,
+            "password": password,
         }
 
         response = requests.post(
@@ -35,11 +32,14 @@ class DiscordUserAPI:
             json=body
         )
         try:
-            response.json()["token"]
-            return response.json()
+            self.ouath = response.json()["token"]
+            self.headers = {
+                "authorization": self.ouath,
+            }
+            self.login_infos = response.json()
         except:
             raise ConnectionResetError(
-                "La requète renvoie un captcha.\nVeuillez arrêter de spammer le /v9/auth/login."
+                "La requète renvoie un captcha.\nVeuillez arrêter de spammer le /v9/auth/login.\nVeuillez utiliser le login par oauth."
             )
     
     def get_id(self) -> str:
