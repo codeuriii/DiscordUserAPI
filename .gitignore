@@ -2,5 +2,6 @@
 __pycache__
 tokens.py
 *.png
+*.jpeg
 gitupd.sh
 retemp.*
