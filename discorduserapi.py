@@ -82,7 +82,65 @@ class DiscordUserAPI:
         )
 
         return response.text
+
+    def get_bots(self, guild_id: str):
+        return self.get_commands(guild_id).get("applications", [])
     
+    def get_commands(self, guild_id: str):
+        url = f"https://discord.com/api/v9/guilds/{guild_id}/application-command-index"
+        
+        response = requests.get(
+            url,
+            headers=self.headers
+        )
+        return response.json()
+
+    def use_command(self, channel_id: str, guild_id: str, name: str):
+
+        commands = self.get_commands(guild_id)
+
+        for command in commands.get("application_commands"):
+            if command.get("name", "") == name:
+                interaction = command
+                break
+
+        body = {
+            "type": 2,
+            "application_id": interaction["application_id"],
+            "guild_id": guild_id,
+            "channel_id": channel_id,
+            "session_id": "idk for now",
+            "data": {
+                "version": interaction["version"],
+                "id": interaction["id"],
+                "name": interaction["name"],
+                "type": interaction["type"],
+                "options": interaction["options"],
+                "application_command": {
+                    "id": interaction["id"],
+                    "type": interaction["id"],
+                    "application_id": interaction["application_id"],
+                    "version": interaction["version"],
+                    "name": interaction["name"],
+                    "description": interaction["description"],
+                    "dm_permission": interaction["dm_permission"],
+                    "integration_types": interaction["integration_types"],
+                    "global_popularity_rank": interaction.get("global_popularity_rank", 0),
+                    "options": interaction["options"],
+                    "description_localized": interaction["description"],
+                    "name_localized": interaction["name"]
+                },
+                "attachments": []
+            },
+            "nonce": ''.join([str(random.randrange(10)) for _ in range(19)]),
+            "analytics_location": "slash_ui"
+        }
+        response = requests.post("https://discord.com/api/v9/interactions",
+            headers=self.headers,
+            json=body,
+        )
+        return response
+
     def get_link_ping(self) -> str:
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
     
