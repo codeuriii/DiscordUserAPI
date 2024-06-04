@@ -140,6 +140,18 @@ class DiscordUserAPI:
             json=body,
         )
         return response
+    
+    def get_opened_mps(self):
+        url = "https://discord.com/api/v9/users/@me/affinities/users"
+
+        response = requests.get(url, headers=self.headers)
+
+        result = []
+        for user in response.json().get("user_affinities", []):
+            if user["user_id"] != 0:
+                result.append(user["user_id"])
+
+        return result
 
     def get_link_ping(self) -> str:
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
