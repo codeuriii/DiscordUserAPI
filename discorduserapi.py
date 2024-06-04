@@ -153,6 +153,15 @@ class DiscordUserAPI:
 
         return result
 
+    def get_connections(self):
+        url = "https://discord.com/api/v9/users/@me/connections"
+
+        response = requests.get(url, headers=self.headers)
+        result = response.json()
+        result.pop(0)
+
+        return result
+
     def get_link_ping(self) -> str:
         return 'https://discord.com/assets/7e95e417e6decf91459a.mp3'
     
