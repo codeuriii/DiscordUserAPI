@@ -198,7 +198,8 @@ class DiscordUserAPI:
 
         return response.json()
 
-    def get_avatar(self, profile: dict, size: str = "128") -> bytes:
+    def get_avatar(self, user_id: str, size: str = "128") -> bytes:
+        profile = self.get_profile(user_id)
         current_id = profile["user"]["id"]
         current_avatar = profile['user']['avatar']
 
