@@ -19,6 +19,9 @@ class DiscordUserAPI:
         self.headers = {
             "authorization": self.ouath,
         }
+        url = "https://discord.com/api/v9/users/@me"
+        response = requests.get(url, headers=self.headers)
+        self.infos = response.json()
 
     def login_mail(self, mail: str, password: str) -> dict:
         url = "https://discord.com/api/v9/auth/login"
@@ -35,15 +38,23 @@ class DiscordUserAPI:
             self.ouath = response.json()["token"]
             self.headers = {
                 "authorization": self.ouath,
-            }
-            self.login_infos = response.json()
+            }            
+            url = "https://discord.com/api/v9/users/@me"
+            response = requests.get(url, headers=self.headers)
+            self.infos = response.json()
         except:
             raise ConnectionResetError(
                 "La requète renvoie un captcha.\nVeuillez arrêter de spammer le /v9/auth/login.\nVeuillez utiliser le login par oauth."
             )
     
-    def get_id(self) -> str:
-        return self.login_infos["user_id"]
+    def get_owner_id(self) -> str:
+        return self.infos["id"]
+    
+    def get_owner_infos(self) -> str:
+        return self.infos
+    
+    def get_owner_username(self) -> str:
+        return self.infos["username"]
     
     def send_msg(self, id_recv: str, msg_to_send: str) -> dict[str, (str | int | dict | list | bool | None)]:
         url = f"https://discord.com/api/v9/channels/{id_recv}/messages"
